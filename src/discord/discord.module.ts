@@ -3,10 +3,13 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { IntentsBitField } from 'discord.js';
 import { NecordModule } from 'necord';
 import { CokeTrackerCommand } from './commands/coke-tracker.command';
+import { ScheduleModule } from '@nestjs/schedule';
 import { CokeTrackerModule } from '../coketracker/coketracker.module';
+import { PingCommand } from './commands/ping.command';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     CokeTrackerModule,
     NecordModule.forRootAsync({
       imports: [ConfigModule],
@@ -21,6 +24,6 @@ import { CokeTrackerModule } from '../coketracker/coketracker.module';
       inject: [ConfigService],
     }),
   ],
-  providers: [CokeTrackerCommand],
+  providers: [CokeTrackerCommand, PingCommand],
 })
 export class DiscordModule {}
