@@ -6,5 +6,6 @@ export default registerAs('sql', () => ({
   port: parseInt(process.env.SQL_DB_PORT, 10) || 3306,
   username: process.env.SQL_DB_USERNAME || 'root',
   password: process.env.SQL_DB_PASSWORD,
-  name: process.env.SQL_DB_NAME || 'craftsman',
+  name: process.env.SQL_DB_NAME || 'backend',
+  filename: process.env.SQL_DB_FILENAME || './backend.sqlite',
 }));

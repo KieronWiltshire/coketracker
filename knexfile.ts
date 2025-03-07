@@ -17,12 +17,14 @@ module.exports = async () => {
 
   return {
     client: config.get<string>('sql.driver'),
+    useNullAsDefault: true,
     connection: {
       host: config.get<string>('sql.host'),
       port: config.get<number>('sql.port'),
       user: config.get<string>('sql.username'),
       password: config.get<string>('sql.password'),
       database: config.get<string>('sql.name'),
+      filename: config.get<string>('sql.filename'),
     },
     migrations: {
       directory: path.join(__dirname, 'src', 'database', 'knex', 'migrations'),
