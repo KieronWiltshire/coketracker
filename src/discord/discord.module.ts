@@ -6,11 +6,17 @@ import { CokeTrackerCommand } from './commands/coke-tracker.command';
 import { ScheduleModule } from '@nestjs/schedule';
 import { CokeTrackerModule } from '../coketracker/coketracker.module';
 import { PingCommand } from './commands/ping.command';
+import { GymTrackerModule } from '../gymtracker/gymtracker.module';
+import { GymTrackerCommand } from './commands/gym-tracker.command';
+import { EnergyDrinkTrackerModule } from '../energydrinktracker/energydrinktracker.module';
+import { EnergyDrinkTrackerCommand } from './commands/energy-drink-tracker.command';
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     CokeTrackerModule,
+    GymTrackerModule,
+    EnergyDrinkTrackerModule,
     NecordModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
@@ -24,6 +30,6 @@ import { PingCommand } from './commands/ping.command';
       inject: [ConfigService],
     }),
   ],
-  providers: [CokeTrackerCommand, PingCommand],
+  providers: [CokeTrackerCommand, GymTrackerCommand, EnergyDrinkTrackerCommand, PingCommand],
 })
 export class DiscordModule {}

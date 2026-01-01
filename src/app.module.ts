@@ -14,6 +14,8 @@ import { ScheduleModule } from '@nestjs/schedule';
 import discordConfig from './config/discord.config';
 import { DiscordModule } from './discord/discord.module';
 import { CokeTrackerModule } from './coketracker/coketracker.module';
+import { GymTrackerModule } from './gymtracker/gymtracker.module';
+import { EnergyDrinkTrackerModule } from './energydrinktracker/energydrinktracker.module';
 
 @Module({
   imports: [
@@ -56,6 +58,8 @@ import { CokeTrackerModule } from './coketracker/coketracker.module';
     }),
     ScheduleModule.forRoot(),
     CokeTrackerModule,
+    GymTrackerModule,
+    EnergyDrinkTrackerModule,
     DiscordModule,
   ],
   providers: [
