@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { IntentsBitField } from 'discord.js';
 import { NecordModule } from 'necord';
 import { CokeTrackerCommand } from './commands/coke-tracker.command';
-import { ScheduleModule } from '@nestjs/schedule';
 import { CokeTrackerModule } from '../coketracker/coketracker.module';
 import { PingCommand } from './commands/ping.command';
 import { GymTrackerModule } from '../gymtracker/gymtracker.module';
@@ -13,7 +12,6 @@ import { EnergyDrinkTrackerCommand } from './commands/energy-drink-tracker.comma
 
 @Module({
   imports: [
-    ScheduleModule.forRoot(),
     CokeTrackerModule,
     GymTrackerModule,
     EnergyDrinkTrackerModule,
@@ -25,11 +23,16 @@ import { EnergyDrinkTrackerCommand } from './commands/energy-drink-tracker.comma
           IntentsBitField.Flags.GuildMembers,
           IntentsBitField.Flags.GuildMessages,
           IntentsBitField.Flags.MessageContent,
-        ]
+        ],
       }),
       inject: [ConfigService],
     }),
   ],
-  providers: [CokeTrackerCommand, GymTrackerCommand, EnergyDrinkTrackerCommand, PingCommand],
+  providers: [
+    CokeTrackerCommand,
+    GymTrackerCommand,
+    EnergyDrinkTrackerCommand,
+    PingCommand,
+  ],
 })
 export class DiscordModule {}
